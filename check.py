@@ -15,6 +15,7 @@ elif x >= y:
     save_path = _config.save_path + "elvui-" + str(y) + ".zip"
 
     ## Call function to download latest ElvUI
+    print(f"Downloading ElvUI version {y}")
     _config.download_elvui(url, save_path)
 
     ## Call function to remove current ElvUI folders
