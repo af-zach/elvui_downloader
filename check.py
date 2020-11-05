@@ -22,3 +22,8 @@ elif x < y:
     ## Call function to unzip new ElvUI version to wow/addons
     print(f"Unzipping elvui-{y}.zip to wow/addons")
     _config.unzip_elvui(save_path, _config.wow_addons)
+
+    ## Final check local version and exit program
+    z = _config.get_local_version()
+    print(f"Your version of ElvUI is now {z}.")
+    sys.exit()

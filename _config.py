@@ -67,6 +67,6 @@ def download_elvui(url, save_path):
     with open(save_path, "wb") as code:
         code.write(r.content)
 
-def unzip_elvui(path_to_zipfile, path_to_unzip):
+def unzip_elvui(path_to_zipfile, extract_to):
     with zipfile.ZipFile(path_to_zipfile, 'r') as zip_ref:
-        zip_ref.extractall(path_to_unzip)
+        zip_ref.extractall(extract_to)
