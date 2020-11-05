@@ -1,10 +1,11 @@
 from lxml import html
 import requests
+import _config
 
 def get_public_version():        
-    get_url = requests.get("https://www.tukui.org/download.php?ui=elvui")
+    get_url = requests.get(_config.elvui_url)
     tree = html.fromstring(get_url.content)
-    get_version = tree.xpath('//*[@id="version"]/b[1]/text()')
+    get_version = tree.xpath(_config.elvui_version_xpath)
 
     ## Return version number as a list
     return get_version
@@ -17,6 +18,8 @@ def convert_list_to_float(version_list):
     ## Return version number as a float
     return float_version
 
+
+## DELETE SOON
 x = get_public_version()
 y = convert_list_to_float(x)
 
