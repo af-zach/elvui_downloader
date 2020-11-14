@@ -4,15 +4,15 @@ wow_addons = "E:/World of Warcraft/_retail_/Interface/AddOns/"
 ## Input your path to store downloaded versions of Elvui
 save_path = "C:/Users/zach/Downloads/"
 
-############################
-## DO NOT EDIT BELOW HERE ##
-############################
-
 ## Retail Elvui download page URL
 elvui_url = "https://www.tukui.org/download.php?ui=elvui"
 
 ## Retail Elvui downloads URL
 elvui_download_url = "https://www.tukui.org/downloads/"
+
+############################
+## DO NOT EDIT BELOW HERE ##
+############################
 
 ## Elvui version XPath
 elvui_version_xpath = '//*[@id="version"]/b[1]/text()'
@@ -20,12 +20,13 @@ elvui_version_xpath = '//*[@id="version"]/b[1]/text()'
 from lxml import html
 import requests
 import zipfile
-def get_public_version():        
+import shutil
+
+def get_public_version():
     get_url = requests.get(elvui_url)
     tree = html.fromstring(get_url.content)
     version_list = tree.xpath(elvui_version_xpath)
 
-    ## Convert version_list to a float
     get_version = convert_list_to_float(version_list)
 
     ## Return version number as a list
@@ -70,3 +71,11 @@ def download_elvui(url, save_path):
 def unzip_elvui(path_to_zipfile, extract_to):
     with zipfile.ZipFile(path_to_zipfile, 'r') as zip_ref:
         zip_ref.extractall(extract_to)
+
+def delete_elvui_dir(wow_addons):
+    elvui_dir = wow_addons + "ElvUI"
+    elvui_options_dir = wow_addons + "ElvUI_OptionsUI"
+    
+    shutil.rmtree(elvui_dir)
+    shutil.rmtree(elvui_options_dir)
+
